@@ -1,0 +1,17 @@
+man:	a manual/Documentation for terminal commands. To look up a specific command, enter the man 			command followed by the command you want to look up.
+
+pwd:	short for print working directory. Prints the current working directory onto the 			terminal.
+
+mkdir:	short for make directory. Create a new directory or multiple new directories under the 			current working directory, if the specified directory does not exist.
+
+mv:		Command for moving or renaming files to a destination name or directory.
+
+cd:		Command for changing erminal tworking directory.
+
+ls: 	list directory contents. List the information about the Files and subdirectories in the 		current directory 
+
+find: 	Command for searching a specified file in a directory.search for the files or directory 		specifies in the working directory. If find a directory, print all of its subdirectories
+
+locate:	Command find files by name
+
+g++:	The C/C++ compiler.
