@@ -11,6 +11,7 @@
 Queue<char>* infixToPostFix(Queue<char>* inputQueue);
 int evaluatePostFix(Queue<char>* postfixQueue);
 int evaluateHelper(int a, int b, char op);
+int power(int a, int b);
 
 //Global Variables
 //defining a digit map to map the char digit to int
@@ -57,6 +58,7 @@ int main(){
 	opMap['-'] = 1;
 	opMap['*'] = 2;
 	opMap['/'] = 2;
+    opMap['$'] = 3;
 
 	//Convert the infix notation into postFix notation
 	Queue<char>* postFix = infixToPostFix(&inputQueue);
@@ -132,7 +134,7 @@ Queue<char>* infixToPostFix(Queue<char>* inputQueue){
 				}
 			}
 			if (opStack.getTop() == '(' ){
-				cout << "Found match opening parantheses, discarded" << endl;
+				cout << "Found match opening parantheses, discard paratheses" << endl;
 				opStack.pop();
 			}
 			else {
@@ -142,6 +144,15 @@ Queue<char>* infixToPostFix(Queue<char>* inputQueue){
 		}
 		//If the next char is an operator
 		else if(opMap.find(next) != opMap.end()){
+
+            //Remove the next char if ** is detected
+            //And replace next with a special character $
+            if (next == '*'){
+                if (inputQueue->getFront() == '*'){
+                    inputQueue->pull();
+                    next = '$';
+                }
+            }
 			//While the opStack is not empty and the top operation
 			//on the stack is of higher precedence of the next
 			while(opStack.isFull() != -1 && opMap[opStack.getTop()] > opMap[next]){
@@ -190,7 +201,7 @@ int evaluatePostFix(Queue<char>* postfixQueue){
 				cout << "Insertion failed, memory may be full" << endl;
 				break;
 			}
-			//
+
 			// cout << "enter a char to continue ";
 			// char a;
 			// cin >> a;
@@ -238,9 +249,19 @@ int evaluateHelper(int a, int b, char op){
 			return (a * b);
 		case '/':
 			return (a / b);
+        case '$':
+            return power(a,b);
 		default:
 			cout << "Error: Invalid operator" << endl;
 			break;
 	}
 	return -1;
+}
+
+//return the result of a raised to the b-th power
+int power(int a, int b){
+    if (b == 1)
+        return a;
+    else
+        return power( (a*a), b-1);
 }
