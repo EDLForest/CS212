@@ -29,11 +29,11 @@ int main(){
 		printf("%c\n", output);
 	} while(output != '\0');
 
-	printf("To enter Testing console, enter t\n");
-	printf("To exit, enter otherwise");
-	scanf(" %c", &input);
-	if(input == 't')
-	Test_console(q);
+	// printf("To enter Testing console, enter t\n");
+	// printf("To exit, enter otherwise");
+	// scanf(" %c", &input);
+	// if(input == 't')
+	// Test_console(q);
 
 
 	return 0;
