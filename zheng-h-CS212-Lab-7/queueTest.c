@@ -7,7 +7,7 @@
 int main(){
 
 	//Initialize
-	Queue* q;
+	Queue* q = (Queue*)malloc(sizeof(Queue));
 	queueInit(q);
 
 	printf("Please input chars to be pushed into the queue\n");
@@ -25,13 +25,32 @@ int main(){
 	}
 
 	printf("Input ended, now printing the queue from front to back.\n");
-	char output = 't';
-	do {				//While the output pointer points a non Null value
+	reset(q, 0);
+	Node* current = getCurrent(q);
+	char output = ' ';
+	do {				//While the output is a non Null value
 		//printf("out put is: %c\n", output);
-		output = pull(q);
-		printf("%c\n", output);
-	} while(output != '\0');
-    //
+		output = current->data;
+		current = getNext(q,1);
+		printf("%c", output);
+	} while(current);
+
+	printf("\n");
+
+	printf("Now printing the queue from back to front.\n");
+	reset(q, 1);
+	current = getCurrent(q);
+	output = ' ';
+	do {				//While the output is a non Null value
+		//printf("out put is: %c\n", output);
+		output = current->data;
+		printf("%c", output);
+		current = getNext(q,0);
+	} while(current);
+
+	printf("\n");
+
+
 	// printf("To enter Testing console, enter t\n");
 	// printf("To exit, enter otherwise");
 	// scanf(" %c", &input);
